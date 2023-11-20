@@ -1,0 +1,18 @@
+version: '3'
+services:
+  encrypted_backend:
+    container_name: "simple_encryption"
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    # Volumes permitem que os arquivos nos caminhos especificados se mantenham atualizados com os arquivos locais sem necessidade de executar build novamente
+    volumes:
+      - ./src:/app/simple_encryption/src
+      - ./static/:/app/simple_encryption/static/
+      - ./lib/aes-simple/src:/app/simple_encryption/lib/aes-simple/src
+      - ./lib/aes-simple/Cargo.toml:/app/simple_encryption/lib/aes-simple/Cargo.toml
+      - ./lib/rsa-simple/src:/app/simple_encryption/lib/rsa-simple/src
+      - ./lib/rsa-simple/Cargo.toml:/app/simple_encryption/lib/rsa-simple/Cargo.toml
+
+    ports:
+      - 8080:8080

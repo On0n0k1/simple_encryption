@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Rust Actix Web Server</title>
+</head>
+
+<body>
+    <div>
+        <h1>Send AES encrypted Text to API</h1>
+
+        <label for="aesText">Enter Text to encrypt with AES:</label>
+        <input type="text" id="aesText">
+
+        <button id="aesButton">Send AES encrypted message</button>
+    </div>
+    <div>
+        <h1>Send RSA encrypted Text to API</h1>
+
+        <label for="rsaText">Enter Text to encrypt with RSA:</label>
+        <input type="text" id="rsaText">
+
+        <button id="rsaButton">Send RSA encrypted message</button>
+    </div>
+</body>
+
+<script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/forge/0.10.0/forge.min.js"></script>
+<script type="module" src="/aes.js"></script>
+<script type="module" src="/rsa.js"></script>
+
+<script type="module">
+    import sendAesMessage from './aes.js';
+    import { fetchRsaKey, example, encryptSend } from './rsa.js';
+
+    // Add the event listener to the button on window load
+    window.onload = function () {
+        var submitButton = document.getElementById('aesButton');
+        submitButton.addEventListener('click', sendAesMessage);
+        var submitButton = document.getElementById('rsaButton');
+        submitButton.addEventListener('click', encryptSend);
+
+        // Este exemplo mostra que o protocolo RSA funciona no browser, porém, carregar a chave do servidor não está dando o resultado esperado.
+        example();
+    };
+</script>
+
+
+
+</html>
