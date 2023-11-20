@@ -13,6 +13,8 @@ docker compose build
 docker compose up
 ```
 
+Basta acessar o website pelo browser no endereço `http://localhost:8080`.
+
 Caso tenha Rust instalado:
 
 ```bash
